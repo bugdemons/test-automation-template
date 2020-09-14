@@ -3,3 +3,11 @@
 /build/
 /target/
 test-automation.iml
+# ui
+/ui/ui.iml
+
+# rest
+/rest/rest.iml
+
+# commons
+/commons/commons.iml
