@@ -5,9 +5,15 @@
 test-automation.iml
 # ui
 /ui/ui.iml
+/ui/target/
+/ui/build/
 
 # rest
 /rest/rest.iml
+/rest/target/
+/rest/build/
 
 # commons
 /commons/commons.iml
+/commons/target/
+/commons/build/
