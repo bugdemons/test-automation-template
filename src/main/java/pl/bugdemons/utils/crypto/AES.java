@@ -1,23 +1,27 @@
-package pl.bugsfuckers.utils.crypto;
+package pl.bugdemons.utils.crypto;
 
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.Base64;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 public class AES {
 
-    private static SecretKeySpec secretKeySpec;
     private static final String MY_KEY = "someRando!%@mKey1Q32";
     private static final String CIPHER_NAME = "AES/ECB/PKCS5Padding";
+    private static SecretKeySpec secretKeySpec;
+
     static {
         setKey(MY_KEY);
     }
 
+    private AES() {
+    }
+
     public static String encrypt(final String stringToEncrypt) {
-        if(stringToEncrypt.isEmpty()) {
+        if (stringToEncrypt.isEmpty()) {
             throw new IllegalStateException("String to encrypt cannot be empty!");
         }
         try {
@@ -32,7 +36,7 @@ public class AES {
     }
 
     public static String decrypt(final String stringToDecrypt) {
-        if(stringToDecrypt.isEmpty()) {
+        if (stringToDecrypt.isEmpty()) {
             throw new IllegalStateException("String to decrypt cannot be empty!");
         }
         try {

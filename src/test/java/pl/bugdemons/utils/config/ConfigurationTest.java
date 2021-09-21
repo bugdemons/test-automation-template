@@ -1,16 +1,15 @@
-package pl.bugdemons.temp.config;
-
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
+package pl.bugdemons.utils.config;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Slf4j
 public class ConfigurationTest {
+
     @Test
     public void notInitializedConfigShouldNotBeVisibleInSystemProperties() {
         var selenideProperties = getSelenidePropertiesFromSystem();
@@ -28,8 +27,7 @@ public class ConfigurationTest {
     public void cleanup() {
         var selenideProperties = getSelenidePropertiesFromSystem();
         var systemProperties = System.getProperties();
-        for (var property :
-                selenideProperties) {
+        for (var property : selenideProperties) {
             systemProperties.remove(property);
         }
     }

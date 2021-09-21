@@ -1,8 +1,12 @@
-package pl.bugsfuckers.utils.crypto;
+package pl.bugdemons.utils.crypto;
 
 import java.util.Scanner;
 
 public class PasswordEncoder {
+
+    private PasswordEncoder() {
+    }
+
     public static void main(String[] args) {
         String passToEncrypt = getPasswordToEncode();
         String encryptedPassword = AES.encrypt(passToEncrypt);
