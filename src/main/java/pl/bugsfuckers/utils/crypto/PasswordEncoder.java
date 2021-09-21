@@ -1,4 +1,4 @@
-package crypto;
+package pl.bugsfuckers.utils.crypto;
 
 import java.util.Scanner;
 
