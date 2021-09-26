@@ -1,0 +1,36 @@
+Configuration:
+  status: info
+  name: YAMLConfigTest
+  properties:
+    property:
+      name: filename
+      value: target/test-yaml.log
+  thresholdFilter:
+    level: debug
+  appenders:
+    Console:
+      name: STDOUT
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "%d{HH:mm:ss} %-5level %-20logger{1}: %msg%n"
+    File:
+      name: File
+      fileName: ${filename}
+      PatternLayout:
+        Pattern: "%d %p %C{1.} [%t] %m%n" #need to verify this layout
+      Filters:
+        ThresholdFilter:
+          level: error
+
+  Loggers:
+    logger:
+      -
+        name: pl.bugdemons.temp..
+        level: debug
+        additivity: false
+        AppenderRef:
+          ref: File
+    Root:
+      level: info
+      AppenderRef:
+        ref: STDOUT
