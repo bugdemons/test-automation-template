@@ -1,10 +1,13 @@
-package pl.bugdemons.temp.config;
+package pl.bugdemons.utils.config;
 
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @org.springframework.context.annotation.Configuration
 public class Configuration {
+
+    private Configuration() {
+    }
 
     /**
      * Loads Selenide properties and sets them as System properties
@@ -15,6 +18,4 @@ public class Configuration {
             System.setProperty(key, value);
         });
     }
-
-
 }

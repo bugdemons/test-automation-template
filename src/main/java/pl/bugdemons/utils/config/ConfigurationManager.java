@@ -1,17 +1,20 @@
-package pl.bugdemons.temp.config;
-
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.support.PropertiesLoaderUtils;
+package pl.bugdemons.utils.config;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
+
 @Slf4j
 public class ConfigurationManager {
-    private static final String SELENIDE_PREFIX = "selenide.";
 
-    private static final Map<String, String> configuration = createConfiguration();
+    private static final String SELENIDE_PREFIX = "selenide.";
+    private static final Map<String, String> CONFIGURATION = createConfiguration();
+
+    private ConfigurationManager() {
+    }
 
     /**
      * Loads properties from configuration that starts with SELENIDE_PREFIX
@@ -20,7 +23,7 @@ public class ConfigurationManager {
      */
     public static Map<String, String> getSelenideProperties() {
         Map<String, String> selenideProperties = new HashMap<>();
-        for (Map.Entry<String, String> entry : configuration.entrySet()) {
+        for (Map.Entry<String, String> entry : CONFIGURATION.entrySet()) {
             if (entry.getKey().startsWith(SELENIDE_PREFIX)) {
                 selenideProperties.put(entry.getKey(), entry.getValue());
             }
@@ -35,7 +38,7 @@ public class ConfigurationManager {
      * @return String value of property
      */
     public static String getValue(String name) {
-        return configuration.get(name);
+        return CONFIGURATION.get(name);
     }
 
     /**
@@ -48,7 +51,6 @@ public class ConfigurationManager {
         return getValue(SELENIDE_PREFIX + name);
     }
 
-
     /**
      * Add or update configuration value
      *
@@ -56,7 +58,7 @@ public class ConfigurationManager {
      * @param value desired value as string
      */
     public static void setValue(String name, String value) {
-        configuration.put(name, value);
+        CONFIGURATION.put(name, value);
     }
 
     /**
@@ -67,7 +69,8 @@ public class ConfigurationManager {
     private static Map<String, String> createConfiguration() {
         final Map<String, String> configuration = new HashMap<>();
 
-        loadConfigurationFile("configuration/configuration.properties").forEach((key, value) -> configuration.put((String) key, (String) value));
+        loadConfigurationFile("configuration/configuration.properties")
+                .forEach((key, value) -> configuration.put((String) key, (String) value));
 
         return configuration;
     }
