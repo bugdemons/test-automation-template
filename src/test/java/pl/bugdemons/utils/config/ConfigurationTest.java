@@ -6,8 +6,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import pl.bugdemons.utils.junit.tag.Unit;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Unit
 public class ConfigurationTest {
 
     @Test

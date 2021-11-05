@@ -5,11 +5,14 @@ import java.util.List;
 import lombok.Data;
 import org.junit.jupiter.api.Test;
 
+import pl.bugdemons.utils.junit.tag.Unit;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static pl.bugdemons.utils.ObjectMapperUtils.convertToNonNullValueMap;
 import static pl.bugdemons.utils.ObjectMapperUtils.createObjectMapper;
 import static pl.bugdemons.utils.ObjectMapperUtils.prettyPrint;
 
+@Unit
 public class ObjectMapperUtilsTest {
 
     @Test
