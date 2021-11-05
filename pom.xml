@@ -21,11 +21,10 @@
         <selenium.version>3.141.59</selenium.version>
         <testng.version>7.3.0</testng.version>
         <spring.version>5.3.9</spring.version>
-        <openapi.generator.version>5.1.0</openapi.generator.version>
+        <openapi.generator.version>5.3.0</openapi.generator.version>
         <junit.version>5.8.1</junit.version>
         <log4j2.version>2.14.1</log4j2.version>
         <jackson.version>2.12.5</jackson.version>
-        <openapi.generator.version>5.0.0</openapi.generator.version>
         <project.lombok.version>1.18.20</project.lombok.version>
         <junit.version>5.8.0</junit.version>
         <assertj.version>3.20.2</assertj.version>
@@ -120,6 +119,13 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+        <!-- FAKER -->
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
         </dependency>
     </dependencies>
 

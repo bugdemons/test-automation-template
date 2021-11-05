@@ -1,6 +1,7 @@
 package pl.bugdemons.ui.customcommand;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -12,6 +13,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@Disabled("It is only an example, should not run during regular build")
 public class CustomCommandTest {
 
     CalculatorPage calculator;

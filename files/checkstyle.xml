@@ -47,7 +47,6 @@
             <property name="ignoreSetter" value="true"/>
             <property name="ignoreAbstractMethods" value="true"/>
         </module>
-        <module name="HideUtilityClassConstructor"/>
         <module name="InnerTypeLast"/>
         <module name="InterfaceIsType"/>
         <module name="LeftCurly"/>
