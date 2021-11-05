@@ -26,10 +26,13 @@
         <log4j2.version>2.14.1</log4j2.version>
         <jackson.version>2.12.5</jackson.version>
         <project.lombok.version>1.18.20</project.lombok.version>
-        <junit.version>5.8.0</junit.version>
         <assertj.version>3.20.2</assertj.version>
         <checkstyle.plugin.version>3.1.2</checkstyle.plugin.version>
         <puppycrawl.checkstyle.version>8.45.1</puppycrawl.checkstyle.version>
+        <restassured.version>4.4.0</restassured.version>
+        <faker.version>1.0.2</faker.version>
+
+
         <surefire.plugin.version>3.0.0-M5</surefire.plugin.version>
     </properties>
 
@@ -124,8 +127,21 @@
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
-            <version>1.0.2</version>
+            <version>${faker.version}</version>
         </dependency>
+
+        <!-- REST ASSURED -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured-all</artifactId>
+            <version>${restassured.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${restassured.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
