@@ -12,7 +12,7 @@ public class ChromeCapabilities {
         var options = new ChromeOptions();
         options.addArguments("--incognito");
 
-        var capabilities = DesiredCapabilities.chrome();
+        var capabilities = new DesiredCapabilities();
         capabilities.merge(options);
 
         return capabilities;

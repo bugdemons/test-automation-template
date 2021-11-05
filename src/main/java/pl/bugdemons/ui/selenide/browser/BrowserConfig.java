@@ -8,8 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import pl.bugdemons.utils.config.ConfigurationManager;
 
 import static pl.bugdemons.ui.selenide.browser.capabilities.ChromeCapabilities.getChromeCapabilities;
+import static pl.bugdemons.ui.selenide.browser.capabilities.EdgeCapabilities.getEdgeCapabilities;
 import static pl.bugdemons.ui.selenide.browser.capabilities.FirefoxCapabilities.getFirefoxCapabilities;
-import static pl.bugdemons.ui.selenide.browser.capabilities.InternetExplorerCapabilities.getInternetExplorerCapabilities;
 
 @Slf4j
 public class BrowserConfig {
@@ -18,14 +18,15 @@ public class BrowserConfig {
     }
 
     public static void initBrowser() {
+        log.debug("Setting up browser configuration...");
         var browser = getBrowserType();
         if (Objects.nonNull(System.getProperty("grid"))) {
             Configuration.remote = ConfigurationManager.getValue("hub.url");
         }
 
         switch (browser) {
-            case IE:
-                Configuration.browserCapabilities = getInternetExplorerCapabilities();
+            case EDGE:
+                Configuration.browserCapabilities = getEdgeCapabilities();
                 break;
             case FIREFOX:
                 Configuration.browserCapabilities = getFirefoxCapabilities();
@@ -34,14 +35,15 @@ public class BrowserConfig {
             default:
                 Configuration.browserCapabilities = getChromeCapabilities();
         }
+        log.debug("Browser configuration loaded successfully");
     }
 
     private static Browsers getBrowserType() {
-        var browser = ConfigurationManager.getSelenideProperties().get("browser");
+        var browser = ConfigurationManager.geSelenidePropertyValue("browser");
         var sysPropBrowser = System.getProperty("browser");
         if (Objects.nonNull(sysPropBrowser)) {
             log.debug("Overriding selenide.browser [{}] by system browser property [{}]", browser, sysPropBrowser);
-            ConfigurationManager.setValue("selenide.browser", sysPropBrowser);
+            Configuration.browser = sysPropBrowser;
             browser = sysPropBrowser;
         }
 

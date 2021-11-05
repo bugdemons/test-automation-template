@@ -1,7 +1,7 @@
 package pl.bugdemons.ui.selenide.browser;
 
 public enum Browsers {
-    IE,
+    EDGE,
     CHROME,
     FIREFOX
 }

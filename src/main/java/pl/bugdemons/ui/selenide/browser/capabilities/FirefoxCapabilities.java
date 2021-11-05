@@ -12,7 +12,7 @@ public class FirefoxCapabilities {
         var options = new FirefoxOptions();
         options.addArguments("-private");
 
-        var capabilities = DesiredCapabilities.firefox();
+        var capabilities = new DesiredCapabilities();
         capabilities.merge(options);
 
         return capabilities;

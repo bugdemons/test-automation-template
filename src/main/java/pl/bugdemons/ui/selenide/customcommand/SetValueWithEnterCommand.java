@@ -9,16 +9,16 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.impl.WebElementSource;
 import org.openqa.selenium.Keys;
 
-import pl.bugdemons.ui.selenide.UiElement;
+import pl.bugdemons.ui.selenide.CustomElement;
 
 @ParametersAreNonnullByDefault
-public class SetValueWithEnterCommand implements Command<UiElement> {
+public class SetValueWithEnterCommand implements Command<CustomElement> {
 
     @Nonnull
     @Override
-    public UiElement execute(SelenideElement element, WebElementSource locator, @Nullable Object[] args) {
+    public CustomElement execute(SelenideElement element, WebElementSource locator, @Nullable Object[] args) {
         element.setValue((String) args[0]).sendKeys(Keys.ENTER);
 
-        return (UiElement) element;
+        return (CustomElement) element;
     }
 }

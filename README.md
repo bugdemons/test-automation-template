@@ -36,7 +36,7 @@ There are three available browsers:
 
 1. Chrome (param value: CHROME)
 2. Firefox (param value: FIREFOX)
-3. Internet Explorer (param value: IE)
+3. Microsoft Edge (param value: EDGE)
 
 ### - Running tests on grid
 
