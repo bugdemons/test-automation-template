@@ -3,6 +3,7 @@ package pl.bugdemons.ui.selenide.browser;
 import java.util.Objects;
 
 import com.codeborne.selenide.Configuration;
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
 import pl.bugdemons.utils.config.ConfigurationManager;
@@ -12,16 +13,14 @@ import static pl.bugdemons.ui.selenide.browser.capabilities.EdgeCapabilities.get
 import static pl.bugdemons.ui.selenide.browser.capabilities.FirefoxCapabilities.getFirefoxCapabilities;
 
 @Slf4j
+@UtilityClass
 public class BrowserConfig {
-
-    private BrowserConfig() {
-    }
 
     public static void initBrowser() {
         log.debug("Setting up browser configuration...");
         var browser = getBrowserType();
-        if (Objects.nonNull(System.getProperty("grid"))) {
-            Configuration.remote = ConfigurationManager.getValue("hub.url");
+        if (ConfigurationManager.getSelenideFlag("grid")) {
+            Configuration.remote = ConfigurationManager.getSelenideValue("grid.url");
         }
 
         switch (browser) {
@@ -39,7 +38,7 @@ public class BrowserConfig {
     }
 
     private static Browsers getBrowserType() {
-        var browser = ConfigurationManager.geSelenidePropertyValue("browser");
+        var browser = ConfigurationManager.getSelenideValue("browser");
         var sysPropBrowser = System.getProperty("browser");
         if (Objects.nonNull(sysPropBrowser)) {
             log.debug("Overriding selenide.browser [{}] by system browser property [{}]", browser, sysPropBrowser);

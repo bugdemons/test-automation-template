@@ -38,14 +38,29 @@ There are three available browsers:
 2. Firefox (param value: FIREFOX)
 3. Microsoft Edge (param value: EDGE)
 
-### - Running tests on grid
+### - Running tests on grid (selenoid)
 
 There are two ways to configure Selenide to run tests on Selenium Grid:
 
 1. set `selenide.remote=grid_url` property
    in [configuration.properties](src/main/resources/configuration/configuration.properties)
-2. use `-Dgrid` property and set `hub.url=desired_hub_url` property
+2. use `-Dselenide.grid` property and set `selenide.grid.url=desired_hub_url` property
    in [configuration.properties](src/main/resources/configuration/configuration.properties)
+
+#### - Running selenoid
+
+WARN! be sure prots 8080 and 4444 are available on your machine (You do not use any other services on those ports)
+If they are not then change mapping accordingly in [docker-compose.yaml](docker-compose.yml) to some free ports.
+
+If you have docker installed you can use `docker-compose up` to configure selenoid with newest (latest) version of
+chrome. Then you can set `selenide.grid.url=http://localhost:4444/wd/hub` to launch test on chrome in docker. Sessions
+will be available by default under `http://localhost:8080/#/`.
+
+To enable other browser add desired image in [docker-compose.yaml](docker-compose.yml). Please follow list:
+[images](https://aerokube.com/images/latest/)
+
+Additional configuration can be made via [browsers.json](files/browsers.json). For instructions looks
+[here](https://aerokube.com/selenoid/latest/#_browsers_configuration_file)
 
 ### - Creating custom Selenide commands
 
