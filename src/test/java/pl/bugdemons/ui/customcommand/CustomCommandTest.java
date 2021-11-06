@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import pl.bugdemons.ui.page.calculator.CalculatorPage;
-import pl.bugdemons.ui.selenide.CustomSelenideCommands;
 import pl.bugdemons.ui.selenide.browser.BrowserConfig;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -19,7 +18,6 @@ public class CustomCommandTest {
     @BeforeAll
     public void setup() {
         BrowserConfig.initBrowser();
-        CustomSelenideCommands.setUpSelenideCustomCommands();
         open("https://web2.0calc.com/");
         calculator = new CalculatorPage();
     }

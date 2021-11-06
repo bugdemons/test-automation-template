@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
 
-import static pl.bugdemons.ui.selenide.CustomSelenideCommands.$_;
+import static pl.bugdemons.ui.selenide.CustomSelenideCommands.$;
 
 public class CalculatorPage {
 
@@ -23,7 +23,7 @@ public class CalculatorPage {
 
     public CalculatorPage calculateEquation(String value) {
         //example of using custom command
-        $_(INPUT_LOCATOR).setValueWithEnter(value);
+        $(INPUT_LOCATOR).setValueWithEnter(value);
         waitForResult();
 
         return this;
@@ -31,24 +31,24 @@ public class CalculatorPage {
 
     public CalculatorPage waitForResult() {
         var expectedCondition = Condition.attribute("style", "display: inline;");
-        $_(RESULT_LOCATOR).shouldHave(expectedCondition);
+        $(RESULT_LOCATOR).shouldHave(expectedCondition);
 
         return this;
     }
 
     public String getInputValue() {
-        return $_(INPUT_LOCATOR).getValue();
+        return $(INPUT_LOCATOR).getValue();
     }
 
     public CalculatorPage selectRadRadioButton() {
-        $_(RAD_RADIO_BUTTON_LOCATOR).click();
+        $(RAD_RADIO_BUTTON_LOCATOR).click();
 
         return this;
     }
 
     public List<String> getHistoryElements() {
-        $_(HISTORY_DROPDOWN_LOCATOR).click();
-        var history = $_(HISTORY_LOCATOR);
+        $(HISTORY_DROPDOWN_LOCATOR).click();
+        var history = $(HISTORY_LOCATOR);
         history.shouldHave(Condition.cssClass("open"));
 
         return history.$$(By.cssSelector("p[data-inp"))
