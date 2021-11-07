@@ -49,7 +49,7 @@ There are two ways to configure Selenide to run tests on Selenium Grid:
 
 #### - Running selenoid
 
-WARN! be sure prots 8080 and 4444 are available on your machine (You do not use any other services on those ports)
+WARN! be sure ports 8080 and 4444 are available on your machine (You do not use any other services on those ports)
 If they are not then change mapping accordingly in [docker-compose.yaml](docker-compose.yml) to some free ports.
 
 If you have docker installed you can use `docker-compose up` to configure selenoid with newest (latest) version of
@@ -71,3 +71,28 @@ Basic implementation with two commands:
 
 - [CustomSelenideCommands](src/main/java/pl/bugdemons/ui/selenide/CustomSelenideCommands.java)
 - [commands](src/main/java/pl/bugdemons/ui/selenide/customcommand)
+
+## - Docker
+
+WARNING! currently
+
+There are two ways to build your own docker image:
+
+### - Easier - Not all dependencies pre-cached
+
+In CLI in project's root type: `docker build . --rm --no-cache -t image-name:latest`
+
+After that your image will be ready. to use it type: `docker run --rm --name container-name image-name`
+
+It will download missing part of dependencies.
+
+### - Harder -fully pre-cached dependencies
+
+1. Build project with custom settings `mvn clean install -Dmaven.repo.local=temp\deps`
+2. Swap files' names `Dockerfile` with `DockerFileAlt`
+3. In CLI in project's root type: `docker build . --rm --no-cache -t image-name:latest`
+4. After that your image will be ready. to use it type: `docker run --rm --name container-name image-name`
+
+In this case tests will be run with `-o` parameter (offline mode) and no dependencies will be downloaded.
+
+
