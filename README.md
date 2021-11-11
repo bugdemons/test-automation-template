@@ -54,7 +54,7 @@ If they are not then change mapping accordingly in [docker-compose.yaml](docker-
 
 If you have docker installed you can use `docker-compose up` to configure selenoid with newest (latest) version of
 chrome. Then you can set `selenide.grid.url=http://localhost:4444/wd/hub` to launch test on chrome in docker. Sessions
-will be available by default under `http://localhost:8080/#/`.
+will be available by default under `http://localhost:8060/#/`.
 
 To enable other browser add desired image in [docker-compose.yaml](docker-compose.yml). Please follow list:
 [images](https://aerokube.com/images/latest/)
@@ -74,9 +74,7 @@ Basic implementation with two commands:
 
 ## - Docker
 
-WARNING! currently
-
-There are two ways to build your own docker image:
+Currently there are two ways to build your own docker image:
 
 ### - Easier - Not all dependencies pre-cached
 

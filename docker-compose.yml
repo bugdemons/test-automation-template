@@ -8,17 +8,22 @@ services:
     volumes:
       - "./files/:/etc/selenoid/" # assumed current dir contains browsers.json
       - "/var/run/docker.sock:/var/run/docker.sock"
+    container_name: selenoid
   selenoid-chrome:
     image: "selenoid/chrome:latest"
     network_mode: bridge
   selenoid-ui:
     image: "aerokube/selenoid-ui"
     network_mode: bridge
+    ports:
+      - "8060:8080"
+    command: [ "--selenoid-uri", "http://selenoid:4444" ]
     links:
       - selenoid
-    ports:
-      - "8080:8080"
-    command: [ "--selenoid-uri", "http://selenoid:4444" ]
   tests:
     build: .
     network_mode: bridge
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    links:
+      - selenoid
