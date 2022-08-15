@@ -17,4 +17,14 @@ public class Configuration {
             System.setProperty(key, value);
         });
     }
+
+    /**
+     * Loads Kafka properties and sets them on System properties
+     */
+    public void initKafkaProperties() {
+        ConfigurationManager.getKafkaProperties().forEach((key, value) -> {
+            log.info("Setting kafka property: {}={}", key, value);
+            System.setProperty(key, value);
+        });
+    }
 }
