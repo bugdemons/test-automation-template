@@ -11,6 +11,7 @@ import org.springframework.core.io.support.PropertiesLoaderUtils;
 public class ConfigurationManager {
 
     private static final String SELENIDE_PREFIX = "selenide.";
+    private static final String KAFKA_PREFIX = "kafka.";
     private static final Map<String, String> CONFIGURATION = createConfiguration();
 
     private ConfigurationManager() {
@@ -21,14 +22,33 @@ public class ConfigurationManager {
      *
      * @return Map with key-value pairs of selenide properties
      */
-    static Map<String, String> getSelenideProperties() {
-        Map<String, String> selenideProperties = new HashMap<>();
+    public static Map<String, String> getSelenideProperties() {
+        return getProperties(SELENIDE_PREFIX);
+    }
+
+    /**
+     * Loads properties from configuration that starts with KAFKA_PREFIX
+     *
+     * @return Map with key-value pairs of kafka properties
+     */
+    public static Map<String, String> getKafkaProperties() {
+        return getProperties(KAFKA_PREFIX);
+    }
+
+    /**
+     * Loads properties from configuration that starts with specified value
+     *
+     * @param prefix - prefix of desired properties
+     * @return Map with key-value pairs of desired properties
+     */
+    public static Map<String, String> getProperties(String prefix) {
+        Map<String, String> properties = new HashMap<>();
         for (Map.Entry<String, String> entry : CONFIGURATION.entrySet()) {
-            if (entry.getKey().startsWith(SELENIDE_PREFIX)) {
-                selenideProperties.put(entry.getKey(), entry.getValue());
+            if (entry.getKey().startsWith(prefix)) {
+                properties.put(entry.getKey(), entry.getValue());
             }
         }
-        return selenideProperties;
+        return properties;
     }
 
     /**
@@ -69,6 +89,16 @@ public class ConfigurationManager {
      */
     public static Boolean getSelenideFlag(String name) {
         return getFlag(SELENIDE_PREFIX + name);
+    }
+
+    /**
+     * Get value of property from configuration. Configuration need to bede initialized first!
+     *
+     * @param name of kafka property e.g. "bootstrap.servers"
+     * @return String value of property
+     */
+    public static String getKafkaValue(String name) {
+        return getValue(KAFKA_PREFIX + name);
     }
 
     /**
